@@ -36,25 +36,26 @@ const create = async (req, res) => {
       });
     }
 
-    /* =========================
-       CREATE CONTACT
-    ========================= */
-
-    const response = await Contact_modules.create({
+    else
+    {
+          const response = await Contact_modules.create({
       name,
       email,
       message,
     });
 
-    /* =========================
-       SUCCESS RESPONSE
-    ========================= */
+  
 
     return res.status(201).json({
       success: true,
       message: "✅ Contact form submitted successfully",
       data: response,
     });
+    }
+
+
+
+
 
   } catch (error) {
 
