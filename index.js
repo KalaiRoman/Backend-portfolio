@@ -1,27 +1,16 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-
+import cors from "cors";
+import route from "./routes/Routes.js";
 dotenv.config();
-
 const app = express();
-
-/* =====================================
-   MIDDLEWARE
-===================================== */
-
 app.use(express.json());
-
-/* =====================================
-   PORT
-===================================== */
-
+app.use(cors({
+  origin: "http://localhost:3000",
+  credentials: true,
+}));
 const PORT = process.env.PORT || 5000;
-
-/* =====================================
-   MONGODB CONNECTION
-===================================== */
-
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => {
@@ -30,11 +19,6 @@ mongoose
   .catch((error) => {
     console.log("❌ MongoDB Connection Error:", error.message);
   });
-
-/* =====================================
-   ROUTES
-===================================== */
-
 app.get("/", (req, res) => {
   res.status(200).json({
     success: true,
@@ -49,9 +33,7 @@ app.get("/connect", (req, res) => {
   });
 });
 
-/* =====================================
-   SERVER
-===================================== */
+app.use("/api",route)
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
