@@ -6,10 +6,16 @@ import route from "./routes/Routes.js";
 dotenv.config();
 const app = express();
 app.use(express.json());
-app.use(cors({
-  origin: ["http://localhost:3000","https://kalaiportfolio.vercel.app"],
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://kalaiportfolio.vercel.app",
+    ],
+    credentials: true,
+  })
+);
+app.use(express.urlencoded({ extended: true }));
 const PORT = process.env.PORT || 5000;
 mongoose
   .connect(process.env.MONGO_URL)

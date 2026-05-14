@@ -26,6 +26,9 @@ const create = async (req, res) => {
 
     const exist = await Contact_modules.findOne({ email });
 
+
+    console.log(exist,"=========================")
+
     if (exist) {
       return res.status(409).json({
         success: false,

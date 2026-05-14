@@ -13,11 +13,11 @@ const contact_module=new mongoose.Schema({
     message:{
         type:String,
         required:true,
-    },
-    createdAt:{
-        type:Date,
-        default:Date.now,
     }
+  
+},
+{
+    timestamps:true
 });
 
 export default mongoose.model("Contact_module",contact_module);
