@@ -2,33 +2,14 @@ import Contact_modules from "../modules/Contact_modules.js";
 
 const create = async (req, res) => {
   try {
-
-    /* =========================
-       GET REQUEST DATA
-    ========================= */
-
     const { name, email, message } = req.body;
-
-    /* =========================
-       VALIDATION
-    ========================= */
-
     if (!name || !email || !message) {
       return res.status(400).json({
         success: false,
         message: "All fields are required",
       });
     }
-
-    /* =========================
-       CHECK EMAIL EXISTS
-    ========================= */
-
     const exist = await Contact_modules.findOne({ email });
-
-
-    console.log(exist,"=========================")
-
     if (exist) {
       return res.status(409).json({
         success: false,
@@ -38,7 +19,7 @@ const create = async (req, res) => {
 
     else
     {
-          const response = await Contact_modules.create({
+     const response = await Contact_modules.create({
       name,
       email,
       message,
@@ -59,7 +40,6 @@ const create = async (req, res) => {
 
   } catch (error) {
 
-    console.log(error);
 
     return res.status(500).json({
       success: false,

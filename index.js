@@ -8,10 +8,7 @@ dotenv.config();
 
 const app = express();
 
-/* ======================
-   MIDDLEWARE
-====================== */
-
+ 
 app.use(express.json());
 
 app.use(
@@ -24,9 +21,7 @@ app.use(
   })
 );
 
-/* ======================
-   DATABASE
-====================== */
+
 
 mongoose
   .connect(process.env.MONGO_URL)
@@ -45,17 +40,12 @@ mongoose.connection.on("error", (err) => {
   console.log("MongoDB connection failed:", err);
 });
 
-/* ======================
-   ROUTES
-====================== */
+
 
 app.get("/", (req, res) => {
   res.send("Server Running");
 });
 
-/* ======================
-   SERVER
-====================== */
 
 app.use("/api",route)
 
