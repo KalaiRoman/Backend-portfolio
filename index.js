@@ -7,7 +7,7 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: ["http://localhost:3000","https://kalaiportfolio.vercel.app"],
   credentials: true,
 }));
 const PORT = process.env.PORT || 5000;
